@@ -1,18 +1,21 @@
-// import React from 'react';
-// import { createRoot } from 'react-dom/client';
-
-// const container = document.getElementById('app');
-// const root = createRoot(container);
-
-// root.render(<h1>PupMatch działa! 🐶</h1>);
-
-
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import Header from './components/Header';
+import DogDetails from './pages/dogdetails';
+import Favorites from './pages/favorites';
 
-export default function App() {
+function App() {
   return (
-    <div className="app">
-      <h1>PupMatch działa! 🐶</h1>
-    </div>
+    <BrowserRouter>
+    <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/dog/:id" element={<DogDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+export default App;
