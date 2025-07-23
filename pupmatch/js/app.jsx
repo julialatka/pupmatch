@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Header from './components/Header';
 import DogDetails from './pages/dogdetails';
 import Favorites from './pages/favorites';
+import Contact from './pages/contact';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/dog/:id" element={<DogDetails />} />
       </Routes>
     </BrowserRouter>

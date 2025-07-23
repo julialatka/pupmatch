@@ -9,8 +9,8 @@ function DogCard({ dog }) {
             <h3>{dog.name}</h3>
             <p><strong>{dog.breed}</strong></p>
             <p>{dog.age}</p>
-            <p>{dog.location}</p>
-            <p>{dog.description}</p>
+            {/* <p>{dog.location}</p>
+            <p>{dog.description}</p> */}
             <Link to={`/dog/${dog.id}`}>See more</Link>
         </div>
     );
