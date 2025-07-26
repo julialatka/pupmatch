@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import dogs from '../data/pupmatchFAKEDATA'; // zakładam, że tak się nazywa plik
+import dogs from '../data/pupmatchFAKEDATA';
 
 function DogDetails() {
   const { id } = useParams(); // pobiera id z URL np. /dog/3

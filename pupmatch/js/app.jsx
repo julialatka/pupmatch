@@ -39,7 +39,6 @@ function App() {
           path="/"
           element={
             <Home
-              favorites={favorites}
               toggleFavorite={toggleFavorite}
               isFavorite={isFavorite}
             />
