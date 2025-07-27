@@ -44,6 +44,8 @@ function DogDetails() {
       <img src={dog.image} alt={dog.name} />
       <p><strong>Breed:</strong> {dog.breed}</p>
       <p><strong>Age:</strong> {dog.age}</p>
+      <p><strong>Gender:</strong> {dog.gender}</p>
+      <p><strong>Coat:</strong> {dog.coat}</p>
       <p><strong>Location:</strong> {dog.location}</p>
       <p><strong>Description:</strong> {dog.description}</p>
     </div>
