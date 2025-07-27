@@ -1,6 +1,4 @@
 const getToken = async () => {
-  console.log("KEY:", import.meta.env.VITE_PETFINDER_API_KEY);
-  console.log("SECRET:", import.meta.env.VITE_PETFINDER_API_SECRET);
 
   const response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
     method: "POST",

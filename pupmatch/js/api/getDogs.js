@@ -1,5 +1,18 @@
 import getToken from "./getToken";
 
+// Helper function to transform API data to our app structure
+const transformAnimal = (animal) => ({
+  id: animal.id,
+  name: animal.name || 'Unknown',
+  breed: animal.breeds?.primary || 'Mixed Breed',
+  age: animal.age || 'Unknown age',
+  description: animal.description || 'No description available.',
+  image: animal.photos?.[0]?.small || animal.photos?.[0]?.medium,
+  location: animal.contact?.address?.city || animal.contact?.address?.state || 'Location not specified.',
+  gender: animal.gender || 'Unknown',
+  coat: animal.coat || 'Unknown'
+});
+
 const getDogs = async () => {
   try {
     const token = await getToken();
@@ -22,17 +35,7 @@ const getDogs = async () => {
     );
     
     // Transform API data to match your existing structure
-    const transformedDogs = dogsWithPhotos.map(animal => ({
-      id: animal.id,
-      name: animal.name || 'Unknown',
-      breed: animal.breeds?.primary || 'Mixed Breed',
-      age: animal.age || 'Unknown age',
-      description: animal.description || 'No description available.',
-      image: animal.photos[0].small || animal.photos[0].medium,
-      location: animal.contact?.address ? 
-        `${animal.contact.address.city || ''}, ${animal.contact.address.state || ''}`.replace(/^,\s*|,\s*$/g, '') || 'Location not specified'
-        : 'Location not specified'
-    }));
+    const transformedDogs = dogsWithPhotos.map(transformAnimal);
 
     return transformedDogs;
   } catch (error) {
@@ -64,17 +67,7 @@ const getDogById = async (id) => {
     const animal = data.animal;
     
     // Transform single dog data to match your existing structure
-    return {
-      id: animal.id,
-      name: animal.name || 'Unknown',
-      breed: animal.breeds?.primary || 'Mixed Breed',
-      age: animal.age || 'Unknown age',
-      description: animal.description || 'No description available.',
-      image: animal.photos?.[0]?.small || animal.photos?.[0]?.medium || `https://placedog.net/500/300?id=${animal.id}`,
-      location: animal.contact?.address ? 
-        `${animal.contact.address.city || ''}, ${animal.contact.address.state || ''}`.replace(/^,\s*|,\s*$/g, '') || 'Location not specified'
-        : 'Location not specified'
-    };
+    return transformAnimal(animal);
   } catch (error) {
     console.error('Error fetching dog by ID:', error);
     throw error;
