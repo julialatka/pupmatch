@@ -1,6 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Contact() {
+  // Stan formularza - React będzie teraz kontrolował wartości pól
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  // Stan dla błędów walidacji
+  const [errors, setErrors] = useState({});
+
+  // Handler do aktualizacji stanu gdy użytkownik pisze
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+
+    // Walidacja dla pola message
+    if (name === 'message') {
+      if (value.length > 0 && value.length < 8) {
+        setErrors({ message: 'Minimalnie 8 znaków' });
+      } else {
+        // Usuń błąd jeśli walidacja przeszła
+        setErrors({});
+      }
+    }
+  };
+
+  // Handler wysyłania formularza
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Dane formularza:', formData);
+  };
+
   return (
     <div className="contact-page">
       <h2>Contact & Adoption Info</h2>
@@ -12,13 +47,32 @@ function Contact() {
         <li>Location: 123 Woof Street, Dogtown, Poland</li>
       </ul>
       <p>Or fill in the below form....</p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Name:</label>
-        <input type="text" id="name" placeholder="Enter your name" />
+        <input 
+          type="text" 
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Enter your name" 
+        />
         <label>Email:</label>
-        <input type="email" id="email" placeholder="Enter your email"/>
+        <input 
+          type="email" 
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Enter your email"
+        />
         <label>Message:</label>
-        <textarea id="message" placeholder="Enter your message" rows="4" />
+        <textarea 
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Enter your message" 
+          rows="4" 
+        />
+        {errors.message && <p style={{color: 'red', fontSize: '14px', margin: '5px 0'}}>{errors.message}</p>}
         <button type="submit">Send</button>
       </form>
       <p>We're happy to answer any questions regarding the adoption process, dog compatibility, or upcoming events.</p>

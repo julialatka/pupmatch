@@ -4,7 +4,7 @@ const getDogs = async () => {
   try {
     const token = await getToken();
 
-    const res = await fetch("https://api.petfinder.com/v2/animals?type=dog&limit=20", {
+    const res = await fetch("https://api.petfinder.com/v2/animals?type=dog&limit=20&sort=random", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -16,14 +16,19 @@ const getDogs = async () => {
 
     const data = await res.json();
     
+    // Filter to only include dogs that have photos
+    const dogsWithPhotos = data.animals.filter(animal => 
+      animal.photos && animal.photos.length > 0
+    );
+    
     // Transform API data to match your existing structure
-    const transformedDogs = data.animals.map(animal => ({
+    const transformedDogs = dogsWithPhotos.map(animal => ({
       id: animal.id,
       name: animal.name || 'Unknown',
       breed: animal.breeds?.primary || 'Mixed Breed',
       age: animal.age || 'Unknown age',
       description: animal.description || 'No description available.',
-      image: animal.photos?.[0]?.small || animal.photos?.[0]?.medium || 'https://placedog.net/500/300?random',
+      image: animal.photos[0].small || animal.photos[0].medium,
       location: animal.contact?.address ? 
         `${animal.contact.address.city || ''}, ${animal.contact.address.state || ''}`.replace(/^,\s*|,\s*$/g, '') || 'Location not specified'
         : 'Location not specified'
@@ -65,7 +70,7 @@ const getDogById = async (id) => {
       breed: animal.breeds?.primary || 'Mixed Breed',
       age: animal.age || 'Unknown age',
       description: animal.description || 'No description available.',
-      image: animal.photos?.[0]?.small || animal.photos?.[0]?.medium || 'https://placedog.net/500/300?random',
+      image: animal.photos?.[0]?.small || animal.photos?.[0]?.medium || `https://placedog.net/500/300?id=${animal.id}`,
       location: animal.contact?.address ? 
         `${animal.contact.address.city || ''}, ${animal.contact.address.state || ''}`.replace(/^,\s*|,\s*$/g, '') || 'Location not specified'
         : 'Location not specified'
