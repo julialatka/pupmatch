@@ -1,6 +1,5 @@
 @use './variables' as *;
 
-// Reset i globalne style
 * {
   box-sizing: border-box;
 }
@@ -8,7 +7,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: $font-family;              // Z variables
+  font-family: $font-family;
   background-color: $background-color;
   color: $text-color;
   line-height: 1.6;
@@ -36,7 +35,6 @@ main {
     margin-bottom: $spacing-xl;
   }
 
-  // Używa .dog-grid z _dog-cards.scss
 }
 
 // Contact page
@@ -50,10 +48,10 @@ main {
   margin-top: $spacing-lg;
 
   h2 {
-    font-family: $font-family;              // Z variables
+    font-family: $font-family;
     color: $primary-color;
     text-align: center;
-    font-weight: $font-weight-medium;       // Z variables
+    font-weight: $font-weight-medium;
     margin-bottom: $spacing-lg;
   }
 
@@ -66,21 +64,21 @@ main {
     margin-top: $spacing-lg;
 
     label {
-      font-family: $font-family;            // Z variables
+      font-family: $font-family;
       display: block;
-      font-weight: $font-weight-medium;     // Z variables
+      font-weight: $font-weight-medium;
       margin: $spacing-md 0 $spacing-xs 0;
       color: $primary-color;
     }
 
     input, textarea {
-      font-family: $font-family;            // Z variables
+      font-family: $font-family;
       width: 100%;
       padding: $spacing-sm;
       border: 2px solid $border-color;
       border-radius: 5px;
       font-size: 1rem;
-      font-weight: $font-weight-regular;    // Z variables
+      font-weight: $font-weight-regular;
       margin-bottom: $spacing-sm;
 
       &:focus {
@@ -90,13 +88,13 @@ main {
     }
 
     button {
-      font-family: $font-family;            // Z variables
+      font-family: $font-family;
       background-color: $secondary-color;
       color: $white;
       border: none;
       padding: $spacing-md $spacing-lg;
       font-size: 1rem;
-      font-weight: $font-weight-medium;     // Z variables
+      font-weight: $font-weight-medium;
       border-radius: 5px;
       cursor: pointer;
       width: 100%;
