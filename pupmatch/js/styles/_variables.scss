@@ -1,9 +1,9 @@
 // Colors
 $primary-color: #77BEF0; 
 $secondary-color: #EA5B6F;
-$secondary-color-dark: #F5CBCB;     // Ciemniejszy pomarańczowy dla hover
+$secondary-color-dark: #F5CBCB;
 $text-color: #333333;
-$background-color: #f5f5f5;         // Poprawiam z czerwonego na szary
+$background-color: #f5f5f5;
 $white: #ffffff;
 $border-color: #dddddd;
 
@@ -16,16 +16,16 @@ $spacing-xl: 40px;
 
 // Typography
 $font-family: 'Open Sans', 'Arial', 'Helvetica', sans-serif;
-$font-weight-light: 300;
+
 $font-weight-regular: 400;
 $font-weight-medium: 600;
 $font-weight-bold: 700;
 
 // Card dimensions
-$card-width: 320px;       // Szersze karty
-$card-height: 450px;      // Wyższe karty
+$card-width: 320px;
+$card-height: 450px;
 $image-height: 200px;
 
-// Breakpoints - 2 breakpointy 
-$laptop: 768px;          // Laptop/Desktop  
-$large-monitor: 1400px;  // Duże monitory
+// Breakpoints
+$laptop: 768px;
+$large-monitor: 1400px;
