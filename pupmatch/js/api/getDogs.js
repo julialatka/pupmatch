@@ -1,6 +1,6 @@
 import getToken from "./getToken";
 
-// Helper function to transform API data to our app structure
+// Helper - transformacja danych z API do mojego formatu
 const transformAnimal = (animal) => ({
   id: animal.id,
   name: animal.name || 'Unknown',
@@ -29,23 +29,23 @@ const getDogs = async () => {
 
     const data = await res.json();
     
-    // Filter to only include dogs that have photos
+    // Filtr na psy ze zdjęciami
     const dogsWithPhotos = data.animals.filter(animal => 
       animal.photos && animal.photos.length > 0
     );
     
-    // Transform API data to match your existing structure
+    // Transformacja danych z API do mojego formatu
     const transformedDogs = dogsWithPhotos.map(transformAnimal);
 
     return transformedDogs;
   } catch (error) {
     console.error('Error fetching dogs:', error);
-    // Return empty array on error - you might want to handle this differently
+    // Pusta tablica w przypadku błędu
     return [];
   }
 };
 
-// Function to get a single dog by ID
+// Funkcja do pobierania pojedynczego psa po ID
 const getDogById = async (id) => {
   try {
     const token = await getToken();
@@ -66,7 +66,7 @@ const getDogById = async (id) => {
     const data = await res.json();
     const animal = data.animal;
     
-    // Transform single dog data to match your existing structure
+    // Transformacja danych z API dla jednego psa do mojego formatu
     return transformAnimal(animal);
   } catch (error) {
     console.error('Error fetching dog by ID:', error);
