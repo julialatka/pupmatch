@@ -5,6 +5,7 @@ import Header from './components/Header';
 import DogDetails from './pages/dogdetails';
 import Favorites from './pages/favorites';
 import Contact from './pages/contact';
+import NotFound from './pages/notfound';
 
 function App() {
   const [favorites, setFavorites] = useState(() => {
@@ -55,6 +56,7 @@ function App() {
         />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dog/:id" element={<DogDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
