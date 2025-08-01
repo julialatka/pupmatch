@@ -29,7 +29,6 @@ function App() {
     return favorites.some((f) => f.id === dogId);
   }
 
-
   return (
     <BrowserRouter>
     <Header />
