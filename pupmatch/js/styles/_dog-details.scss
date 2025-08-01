@@ -10,11 +10,11 @@
   margin-top: $spacing-lg;
 
   h2 {
-    font-family: $font-family;              // Z variables
+    font-family: $font-family;
     text-align: center;
     color: $primary-color;
     font-size: 2.5rem;
-    font-weight: $font-weight-medium;       // Z variables
+    font-weight: $font-weight-medium;  
     margin-bottom: $spacing-lg;
     border-bottom: 2px solid $border-color;
     padding-bottom: $spacing-md;
@@ -32,17 +32,17 @@
   }
 
   p {
-    font-family: $font-family;              // Z variables
+    font-family: $font-family;
     font-size: 1.1rem;
-    font-weight: $font-weight-regular;      // Z variables
+    font-weight: $font-weight-regular; 
     line-height: 1.5;
     margin: $spacing-md 0;
     color: $text-color;
 
     strong {
-      font-family: $font-family;            // Z variables
+      font-family: $font-family;
       color: $primary-color;
-      font-weight: $font-weight-medium;     // Z variables
+      font-weight: $font-weight-medium;
       display: inline-block;
       min-width: 100px;
     }

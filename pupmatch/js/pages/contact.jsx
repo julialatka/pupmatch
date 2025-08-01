@@ -19,14 +19,11 @@ function Contact() {
       [name]: value
     });
 
-    // Walidacja dla pola message
-    if (name === 'message') {
-      if (value.length > 0 && value.length < 8) {
-        setErrors({ message: 'Minimalnie 8 znaków' });
-      } else {
-        // Usuń błąd jeśli walidacja przeszła
-        setErrors({});
-      }
+    // Walidacja wiadomości - minimalnie 8 znaków
+    if (name === 'message' && value.length > 0 && value.length < 8) {
+      setErrors({ message: 'Minimalnie 8 znaków' });
+    } else {
+      setErrors({});
     }
   };
 
