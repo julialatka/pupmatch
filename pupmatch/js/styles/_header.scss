@@ -1,0 +1,72 @@
+@use './variables' as *;
+
+.main-header {
+  position: sticky;                       // Przyklejony do góry!
+  top: 0;                                // Na samej górze ekranu
+  z-index: 1000;                         // Na wierzchu wszystkich elementów
+  background-color: $primary-color;
+  padding: $spacing-md;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);  // Mocniejszy shadow dla sticky
+
+  .header-content {
+    padding: 0 $spacing-lg;           // Padding zamiast max-width
+    display: flex;
+    justify-content: space-between;   // Logo po lewej, nav po prawej
+    align-items: center;              // Wyśrodkowanie pionowe
+    
+    // Na dużych ekranach - większy padding
+    @media (min-width: $large-monitor) {
+      padding: 0 $spacing-xl;         // Więcej padding na dużych ekranach
+    }
+    
+    // Na bardzo małych ekranach - logo i menu pod sobą + mniejszy padding
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: $spacing-md;
+      padding: 0 $spacing-md;         // Mniejszy padding na mobile
+    }
+  }
+
+  .logo {
+    span {
+      font-family: $font-family;            // Z variables
+      color: $white;
+      font-weight: $font-weight-bold;       // Z variables
+      font-size: 24px;
+      letter-spacing: 1px;                  // Rozstaw liter
+      cursor: default;                      // Zwykły cursor, nie pointer!
+      
+      // Mniejsze logo na małych ekranach
+      @media (max-width: 600px) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  nav {
+    .nav-list {
+      list-style: none;           // Usuwa kropki
+      margin: 0;
+      padding: 0;
+      display: flex;              // Linki obok siebie!
+      gap: $spacing-lg;           // Odstęp między linkami
+
+      li {
+        a {
+          font-family: $font-family;          // Z variables
+          color: $white;
+          text-decoration: none;
+          font-weight: $font-weight-medium;   // Z variables
+          font-size: 18px;
+          padding: $spacing-sm $spacing-md;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+  }
+} 
