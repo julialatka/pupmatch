@@ -8,26 +8,30 @@ import Contact from './pages/contact';
 import NotFound from './pages/notfound';
 
 function App() {
+  // sprawdzamy ulubione z localstorage:
   const [favorites, setFavorites] = useState(() => {
     const stored = localStorage.getItem('favorites');
     return stored ? JSON.parse(stored) : [];
   });
 
+  // zmiana favorites, powoduje zapisanie nowego stanu do localstorage:
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
+  // funkcja do dodawania/usuwania psa z ulubionych:
   function toggleFavorite(dog) {
     const alreadyFav = favorites.find((f) => f.id === dog.id);
     if (alreadyFav) {
       setFavorites(favorites.filter((f) => f.id !== dog.id));
     } else {
-      setFavorites([...favorites, dog]);
+      setFavorites([...favorites, dog]); // spread kopiuje istniejące i dodaje nowego psa
     }
   }
 
+  // sprawdza czy dany pies jest w ulubionych:
   function isFavorite(dogId) {
-    return favorites.some((f) => f.id === dogId);
+    return favorites.some((f) => f.id === dogId); // some zwraca true/false
   }
 
   return (
