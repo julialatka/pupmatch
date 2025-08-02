@@ -1,0 +1,72 @@
+@use './variables' as *;
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: $primary-color;
+  padding: $spacing-md;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);  // Mocniejszy shadow dla sticky
+
+  .header-content {
+    padding: 0 $spacing-lg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    // Large screens
+    @media (min-width: $large-monitor) {
+      padding: 0 $spacing-xl;
+    }
+    
+    // Mobile screens
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: $spacing-md;
+      padding: 0 $spacing-md;
+    }
+  }
+
+  .logo {
+    span {
+      font-family: $font-family;
+      color: $white;
+      font-weight: $font-weight-bold;
+      font-size: 24px;
+      letter-spacing: 1px; 
+      cursor: default;
+      
+      // Mniejsze logo na małych ekranach
+      @media (max-width: 600px) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  nav {
+    .nav-list {
+      list-style: none;           // Usuwa krpki
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: $spacing-lg;
+
+      li {
+        a {
+          font-family: $font-family;   
+          color: $white;
+          text-decoration: none;
+          font-weight: $font-weight-medium;
+          font-size: 18px;
+          padding: $spacing-sm $spacing-md;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+  }
+} 

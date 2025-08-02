@@ -1,18 +1,69 @@
-// import React from 'react';
-// import { createRoot } from 'react-dom/client';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import Header from './components/Header';
+import DogDetails from './pages/dogdetails';
+import Favorites from './pages/favorites';
+import Contact from './pages/contact';
+import NotFound from './pages/notfound';
 
-// const container = document.getElementById('app');
-// const root = createRoot(container);
+function App() {
+  // sprawdzamy ulubione z localstorage:
+  const [favorites, setFavorites] = useState(() => {
+    const stored = localStorage.getItem('favorites');
+    return stored ? JSON.parse(stored) : [];
+  });
 
-// root.render(<h1>PupMatch działa! 🐶</h1>);
+  // zmiana favorites, powoduje zapisanie nowego stanu do localstorage:
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
+  // funkcja do dodawania/usuwania psa z ulubionych:
+  function toggleFavorite(dog) {
+    const alreadyFav = favorites.find((f) => f.id === dog.id);
+    if (alreadyFav) {
+      setFavorites(favorites.filter((f) => f.id !== dog.id));
+    } else {
+      setFavorites([...favorites, dog]); // spread kopiuje istniejące i dodaje nowego psa
+    }
+  }
 
-import React from 'react';
+  // sprawdza czy dany pies jest w ulubionych:
+  function isFavorite(dogId) {
+    return favorites.some((f) => f.id === dogId); // some zwraca true/false
+  }
 
-export default function App() {
   return (
-    <div className="app">
-      <h1>PupMatch działa! 🐶</h1>
-    </div>
+    <BrowserRouter>
+    <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              toggleFavorite={toggleFavorite}
+              isFavorite={isFavorite}
+            />
+          }
+        />
+
+        <Route
+          path="/favorites"
+          element={
+            <Favorites
+              favorites={favorites}
+              toggleFavorite={toggleFavorite}
+              isFavorite={isFavorite}
+            />
+          }
+        />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/dog/:id" element={<DogDetails />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+export default App;

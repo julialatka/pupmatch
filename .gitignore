@@ -26,3 +26,4 @@ dist-ssr
 # Other
 .test/
 .solution
+.env
